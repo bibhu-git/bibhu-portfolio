@@ -1,0 +1,15 @@
+@keyframes slider {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+.animate-slider {
+  animation-name: slider;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
