@@ -39,7 +39,7 @@ const Info = () => {
           </div>
 
           {/* Card 3 - Larger */}
-          <div className="card col-span-1 md:row-span-2 relative bg-[#080020b7] border border-gray-700 rounded-2xl overflow-hidden text-left h-[85vh]">
+          <div className="card col-span-1 md:row-span-2 relative bg-[#080020b7] border border-gray-700 rounded-2xl overflow-hidden text-left h-[80vh] md:h-[85vh]">
             <h3 className="absolute bottom-[21%] left-5 text-xl font-semibold max-w-md">
               I’m very flexible with time zone communications & locations
             </h3>
@@ -47,7 +47,7 @@ const Info = () => {
               I'm based in India, Odisha and open to remote work worldwide.
             </p>
       
-            <img src="images/globe.png" alt="globe image" className="w-[95%] h-[60%] object-cover mix-blend-lighten rounded-lg mb-5" />
+            <img src="images/globe.png" alt="globe image" className="w-[95%] h-1/2 md:h-[60%] object-cover mix-blend-lighten rounded-lg mb-5" />
             <Link to='contact'  smooth={true} duration={500} className="absolute bottom-4 left-5 py-2 px-6 border border-gray-600 bg-[#0f1217] text-gray-400 rounded-2xl shadow-md hover:shadow-lg hover:opacity-70 transition-flex items-center gap-2 cursor-pointer">
               <i className="bx bx-send"></i> Contact Me
             </Link>
