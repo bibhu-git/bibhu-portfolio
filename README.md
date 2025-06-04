@@ -4,7 +4,7 @@ This is my personal portfolio website built using **React.js** and **Tailwind CS
 
 ## 🚀 Live Site
 
-https://portfolio-lemon-one-88.vercel.app/
+https://bibhu-portfolio-theta.vercel.app/
 
 ## 🛠 Tech Stack
 
