@@ -40,7 +40,7 @@ s
 
         <form
           className="contact-box mt-24 flex flex-col max-w-lg w-full text-gray-300"
-          action="https://formsubmit.co/bibhuranjanmohanty97@gmail.com"
+          action="https://formsubmit.co/c24ff8e1c407698e36bc70fdb55d43d0"
           method="POST"
           encType="multipart/form-data"
           data-aos="fade-left"
