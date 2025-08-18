@@ -35,17 +35,25 @@ export default function MiladiCodePortfolio() {
 
   return (
     <>
-
-      <div className="bg-slate-900">
-        <Navbar />
-        <Hero />
-        <Info />
-        <Project />
-        <Skill />
-        <Contact />
-        <Footer />
+      <div
+        className={`transition-opacity duration-700 ${loading ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+      >
+        <Loader />
       </div>
 
+      {!loading && (
+        <div className="bg-slate-900">
+          <Navbar />
+          <Hero />
+          <Info />
+          <Project />
+          <Skill />
+          <Contact />
+          <Footer />
+        </div>
+      )}
     </>
   );
+
 }
