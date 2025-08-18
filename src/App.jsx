@@ -10,9 +10,27 @@ import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import ImageSlider from "./Components/ImageSlider";
 import './App.css';
+import Loader from "./Components/Loader";
+import { useState } from "react";
 export default function MiladiCodePortfolio() {
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     AOS.init();
+    // wait until page fully loads
+    const handlePageLoad = () => {
+      setLoading(false);
+    };
+
+    if (document.readyState === "complete") {
+      // page already loaded
+      setLoading(false);
+    } else {
+      window.addEventListener("load", handlePageLoad);
+    }
+
+    return () => window.removeEventListener("load", handlePageLoad);
   }, []);
 
   return (
