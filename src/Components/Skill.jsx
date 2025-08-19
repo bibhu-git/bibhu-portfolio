@@ -32,11 +32,12 @@ const Skill = () => {
             data-aos="fade-right"
             data-aos-delay="500"
           >
-            <h3 className="text-3xl md:text-5xl flex items-center text-blue-400 mb-2">
-              Designer <i className="bx bx-laptop ml-3 text-2xl md:text-4xl"></i>
+            <h3 className="text-3xl md:text-3xl flex items-center text-blue-400 mb-2">
+              {/* Designer <i className="bx bx-laptop ml-3 text-2xl md:text-4xl"></i> */}
+              Web Developer 🌐
             </h3>
             <p className="leading-tight text-sm md:text-base">
-              I have expertise in HTML, CSS, JavaScript, and design tools like Figma and Adobe XD.
+              Skilled in crafting interactive and high-performance web applications using React, Node.js, and modern frameworks.
             </p>
           </div>
 
@@ -46,11 +47,12 @@ const Skill = () => {
             data-aos="fade-left"
             data-aos-delay="600"
           >
-            <h3 className="text-3xl md:text-5xl flex items-center text-blue-400 mb-2">
-              Coder <i className="bx bx-code-block ml-3 text-2xl md:text-4xl"></i>
+            <h3 className="text-3xl md:text-3xl flex items-center text-blue-400 mb-2">
+              {/* Coder <i className="bx bx-code-block ml-3 text-2xl md:text-4xl"></i> */}
+              Software Engineer 🚀
             </h3>
             <p className="leading-tight text-sm md:text-base">
-              I’m skilled in HTML, CSS, JavaScript, and frameworks like React and Node.js.
+              Passionate about writing clean, maintainable code and building full-stack projects that solve real-world problems.
             </p>
           </div>
         </div>

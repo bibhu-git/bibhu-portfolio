@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link} from 'react-scroll';
+import { Link } from 'react-scroll';
 
 const Info = () => {
   return (
     <div id='about'>
-       <section className="info-section max-w-[80vw] mx-auto my-24 flex flex-col items-center text-gray-300">
+      <section className="info-section max-w-[80vw] mx-auto my-24 flex flex-col items-center text-gray-300">
         <h2 className="text-4xl font-extrabold mb-10" data-aos="fade-up">
           Hello, There <span>👋</span>
         </h2>
@@ -22,7 +22,7 @@ const Info = () => {
             <p className="text-sm text-gray-400 max-w-xs">
               I'm a full-stack web developer skilled in the MERN stack, passionate about building responsive and feature-rich web applications.
             </p>
-            
+
           </div>
           {/* Card 2 */}
           <div className="card relative bg-[#080020b7] border border-gray-700 rounded-2xl overflow-hidden text-left h-75">
@@ -34,7 +34,7 @@ const Info = () => {
             <img
               src="images/grid2.png"
               alt="grid-2"
-              className="w-4/5 h-1/2 object-cover mix-blend-lighten rounded-lg m-5 relative"
+              className="w-4/5 h-[75%] object-contain mix-blend-lighten rounded-lg m-auto relative"
             />
           </div>
 
@@ -46,9 +46,9 @@ const Info = () => {
             <p className="absolute bottom-[12%] left-5 text-sm text-gray-400 max-w-sm">
               I'm based in India, Odisha and open to remote work worldwide.
             </p>
-      
+
             <img src="images/globe.png" alt="globe image" className="w-[95%] h-1/2 md:h-[60%] object-cover mix-blend-lighten rounded-lg mb-5" />
-            <Link to='contact'  smooth={true} duration={500} className="absolute bottom-4 left-5 py-2 px-6 border border-gray-600 bg-[#0f1217] text-gray-400 rounded-2xl shadow-md hover:shadow-lg hover:opacity-70 transition-flex items-center gap-2 cursor-pointer">
+            <Link to='contact' smooth={true} duration={500} className="absolute bottom-4 left-5 py-2 px-6 border border-gray-600 bg-[#0f1217] text-gray-400 rounded-2xl shadow-md hover:shadow-lg hover:opacity-70 transition-flex items-center gap-2 cursor-pointer">
               <i className="bx bx-send"></i> Contact Me
             </Link>
           </div>
