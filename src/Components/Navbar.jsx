@@ -93,17 +93,6 @@ const Navbar = () => {
           >
             <FaEye /> Resume
           </a>
-
-          {/* Resume Download in Mobile */}
-          <Link
-            to="resume"
-            smooth={true}
-            duration={500}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition cursor-pointer"
-          >
-            <FaEye /> Resume
-          </Link>
-
         </div>
       </div>
     </nav>
