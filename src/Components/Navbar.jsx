@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-scroll";
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaEye } from "react-icons/fa";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,8 +20,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div data-aos="fade-down">
-            {/* <span className="text-white font-bold text-2xl">&lt;Bibhu /&gt;</span> */}
-            <img className="w-20" src="/logo.png" alt="" />
+            <img className="w-20" src="/logo.png" alt="Logo" />
           </div>
 
           {/* Desktop Nav Links */}
@@ -43,13 +42,14 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* Resume Download Button */}
+            {/* Resume View Button */}
             <a
               href="/resume_Bibhu.pdf"
-              download="Resume_Bibhu.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
             >
-              <FaDownload /> Resume
+              <FaEye /> Resume
             </a>
           </div>
 
@@ -66,7 +66,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu with slide animation */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden bg-black/30 backdrop-blur-md shadow-md overflow-hidden transition-[max-height] duration-300 ease-in-out ${menuOpen ? "max-h-96" : "max-h-0"
           }`}
@@ -83,15 +83,27 @@ const Navbar = () => {
             </a>
           ))}
 
-          {/* Resume Download in Mobile Menu */}
+          {/* Resume View in Mobile */}
           <a
             href="/resume_Bibhu.pdf"
-            download="Resume_Bibhu.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
             onClick={() => setMenuOpen(false)}
           >
-            <FaDownload /> Resume
+            <FaEye /> Resume
           </a>
+
+          {/* Resume Download in Mobile */}
+          <Link
+            to="resume"
+            smooth={true}
+            duration={500}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition cursor-pointer"
+          >
+            <FaEye /> Resume
+          </Link>
+
         </div>
       </div>
     </nav>
