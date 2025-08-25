@@ -20,7 +20,8 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div data-aos="fade-down">
-            <span className="text-white font-bold text-2xl">&lt;Bibhu /&gt;</span>
+            {/* <span className="text-white font-bold text-2xl">&lt;Bibhu /&gt;</span> */}
+            <img className="w-20" src="/logo.png" alt="" />
           </div>
 
           {/* Desktop Nav Links */}
