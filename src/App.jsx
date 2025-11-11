@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+// App.jsx
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Navbar from "./Components/Navbar";
@@ -8,24 +9,20 @@ import Project from "./Components/Project";
 import Skill from "./Components/Skill";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
-import ImageSlider from "./Components/ImageSlider";
-import './App.css';
+import "./App.css";
 import Loader from "./Components/Loader";
-import { useState } from "react";
-export default function MiladiCodePortfolio() {
 
+export default function MiladiCodePortfolio() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    AOS.init();
-    // wait until page fully loads
-    const handlePageLoad = () => {
-      setLoading(false);
-    };
+    AOS.init({ once: true, duration: 900 });
+    // If page already loaded, hide loader, otherwise wait for load event
+    const handlePageLoad = () => setLoading(false);
 
     if (document.readyState === "complete") {
-      // page already loaded
-      setLoading(false);
+      // small delay so loader feels intentional
+      setTimeout(() => setLoading(false), 450);
     } else {
       window.addEventListener("load", handlePageLoad);
     }
@@ -35,25 +32,28 @@ export default function MiladiCodePortfolio() {
 
   return (
     <>
+      {/* Loader overlay — kept visible until loading state flips */}
       <div
-        className={`transition-opacity duration-700 ${loading ? "opacity-100" : "opacity-0 pointer-events-none"
+        aria-hidden={loading ? "false" : "true"}
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 backdrop-blur-sm transition-opacity duration-700 ${loading ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
       >
         <Loader />
       </div>
 
-      {!loading && (
-        <div className="bg-slate-900">
-          <Navbar />
-          <Hero />
-          <Info />
-          <Project />
-          <Skill />
-          <Contact />
-          <Footer />
-        </div>
-      )}
+      {/* Main content */}
+      <main
+        className={`min-h-screen transition-opacity duration-700 ${loading ? "opacity-0 pointer-events-none" : "opacity-100"
+          } bg-slate-900`}
+      >
+        <Navbar />
+        <Hero />
+        <Info />
+        <Project />
+        <Skill />
+        <Contact />
+        <Footer />
+      </main>
     </>
   );
-
 }

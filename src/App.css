@@ -1,0 +1,103 @@
+/* =========================
+   Hero section — modern 3D styles
+   (paste into App.css)
+   ========================= */
+
+/* subtle fade helper (kept) */
+@keyframes subtle-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-subtle-fade { animation: subtle-fade 600ms ease both; }
+
+/* ===== hero: polished right-card styles ===== */
+
+/* Placeholder screenshot look & inner shadow */
+.project-screenshot {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  border-radius: 12px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.45);
+  object-fit: cover;
+  min-height: 180px;
+}
+
+/* card container */
+.profile-card {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* softer border on card content */
+.profile-card .project-screenshot {
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* subtle group hover effect */
+.profile-card.group:hover {
+  box-shadow: 0 30px 70px rgba(2,6,23,0.55);
+  transform: translateY(-4px);
+}
+
+/* avatar ring */
+.profile-card .ring-4 {
+  box-shadow: 0 8px 18px rgba(2,6,23,0.45);
+}
+
+/* responsive heights */
+@media (min-width: 768px) {
+  .project-screenshot { height: 14.5rem; } /* md: h-56 */
+}
+@media (max-width: 767px) {
+  .project-screenshot { height: 12.5rem; } /* mobile slightly smaller */
+}
+
+/* small polish for grid chips inside card */
+.profile-card .text-xs.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* remove image selection blue on mobile */
+img { -webkit-user-drag: none; user-select: none; }
+
+/* final small responsive tweak */
+@media (max-width: 540px) {
+  .profile-card { padding: 12px !important; }
+  .profile-card .project-screenshot { border-radius: 10px; }
+}
+
+
+section + section {
+  scroll-margin-top: 80px; /* keeps spacing neat when using smooth scroll */
+  border-top: 1px solid rgba(148,163,184,0.05);
+}
+
+
+/* Skill section polish */
+.gradient-bar {
+  background: linear-gradient(90deg, #06b6d4 0%, #7c3aed 100%);
+  transition: width 900ms cubic-bezier(.2,.9,.3,1);
+  box-shadow: 0 6px 18px rgba(6,8,23,0.5);
+}
+
+/* card hover lift polish */
+.rounded-2xl:hover {
+  transform: translateY(-4px);
+  transition: transform 280ms ease;
+}
+
+/* shadow inner for workflow footer */
+.shadow-inner {
+  box-shadow: inset 0 6px 18px rgba(0,0,0,0.5);
+}
+
+/* responsive tweaks */
+@media (max-width: 768px) {
+  .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .min-h-\[75vh\] { min-height: 60vh; }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-bar, .rounded-2xl, .group, .transition { transition: none !important; }
+}
