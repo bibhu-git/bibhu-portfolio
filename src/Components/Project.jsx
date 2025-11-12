@@ -1,9 +1,8 @@
-// Project.jsx — improved modal/backdrop/focus + defensive checks
+// Project.jsx — projects grid + modal, with unified non-hero background
 import React, { useEffect, useState, useCallback, useRef } from "react";
 
 const FALLBACK = "/images/placeholder.png";
 
-/* ---------- Utilities ---------- */
 function ImgWithFallback({ src, alt, className }) {
   const handleError = (e) => {
     if (e.currentTarget.src !== FALLBACK) e.currentTarget.src = FALLBACK;
@@ -20,7 +19,6 @@ function ImgWithFallback({ src, alt, className }) {
   );
 }
 
-/* ---------- Modal + Carousel ---------- */
 function ProjectModal({ open, project, onClose }) {
   const [index, setIndex] = useState(0);
   const dialogRef = useRef(null);
@@ -29,14 +27,11 @@ function ProjectModal({ open, project, onClose }) {
   useEffect(() => {
     if (open) {
       lastFocusedRef.current = document.activeElement;
-      // lock scroll
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      // focus modal
       setTimeout(() => dialogRef.current?.focus(), 0);
       return () => {
         document.body.style.overflow = prev;
-        // restore focus
         try {
           lastFocusedRef.current?.focus?.();
         } catch (e) { }
@@ -51,7 +46,7 @@ function ProjectModal({ open, project, onClose }) {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") setIndex((i) => Math.max(0, i - 1));
       if (e.key === "ArrowRight") {
-        const imgs = (project?.images && project.images.length) ? project.images : [project?.img].filter(Boolean);
+        const imgs = project?.images?.length ? project.images : [project?.img].filter(Boolean);
         setIndex((i) => Math.min(imgs.length - 1, i + 1));
       }
     };
@@ -61,13 +56,11 @@ function ProjectModal({ open, project, onClose }) {
 
   if (!open || !project) return null;
 
-  const imgs = (project.images && project.images.length) ? project.images : (project.img ? [project.img] : [FALLBACK]);
+  const imgs = project.images && project.images.length ? project.images : project.img ? [project.img] : [FALLBACK];
 
   const goPrev = () => setIndex((i) => Math.max(0, i - 1));
   const goNext = () => setIndex((i) => Math.min(imgs.length - 1, i + 1));
-
   const onOverlayClick = (e) => {
-    // close only when clicking the backdrop
     if (e.target === e.currentTarget) onClose();
   };
 
@@ -79,11 +72,7 @@ function ProjectModal({ open, project, onClose }) {
       aria-label={project.title || "Project preview"}
       onClick={onOverlayClick}
     >
-      <div
-        ref={dialogRef}
-        tabIndex={-1}
-        className="max-w-4xl w-full bg-slate-900 rounded-2xl shadow-xl overflow-hidden outline-none"
-      >
+      <div ref={dialogRef} tabIndex={-1} className="max-w-4xl w-full bg-slate-900 rounded-2xl shadow-xl overflow-hidden outline-none">
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
           <h3 className="text-lg font-semibold text-slate-100">{project.title}</h3>
           <div className="flex items-center gap-2">
@@ -106,26 +95,11 @@ function ProjectModal({ open, project, onClose }) {
         <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-2">
             <div className="relative">
-              <ImgWithFallback
-                src={imgs[index]}
-                alt={`${project.title} screenshot ${index + 1}`}
-                className="w-full h-72 md:h-[460px] object-cover rounded-lg"
-              />
-              {/* left / right arrows */}
-              <button
-                onClick={goPrev}
-                aria-label="Previous image"
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full text-white hover:bg-black/60"
-                disabled={index === 0}
-              >
+              <ImgWithFallback src={imgs[index]} alt={`${project.title} screenshot ${index + 1}`} className="w-full h-72 md:h-[460px] object-cover rounded-lg" />
+              <button onClick={goPrev} aria-label="Previous image" className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full text-white hover:bg-black/60" disabled={index === 0}>
                 ‹
               </button>
-              <button
-                onClick={goNext}
-                aria-label="Next image"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full text-white hover:bg-black/60"
-                disabled={index === imgs.length - 1}
-              >
+              <button onClick={goNext} aria-label="Next image" className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full text-white hover:bg-black/60" disabled={index === imgs.length - 1}>
                 ›
               </button>
             </div>
@@ -133,12 +107,7 @@ function ProjectModal({ open, project, onClose }) {
             {imgs.length > 1 && (
               <div className="mt-3 flex gap-2 overflow-x-auto" role="group" aria-label="Thumbnails">
                 {imgs.map((s, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setIndex(i)}
-                    className={`w-20 h-12 rounded overflow-hidden border ${i === index ? "border-cyan-400" : "border-slate-700"}`}
-                    aria-pressed={i === index}
-                  >
+                  <button key={i} onClick={() => setIndex(i)} className={`w-20 h-12 rounded overflow-hidden border ${i === index ? "border-cyan-400" : "border-slate-700"}`} aria-pressed={i === index}>
                     <ImgWithFallback src={s} alt={`thumb-${i}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
@@ -165,7 +134,9 @@ function ProjectModal({ open, project, onClose }) {
         </div>
 
         <div className="p-4 border-t border-slate-700 text-right">
-          <button className="px-4 py-2 rounded bg-slate-800 text-slate-200" onClick={onClose}>Close</button>
+          <button className="px-4 py-2 rounded bg-slate-800 text-slate-200" onClick={onClose}>
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -179,7 +150,8 @@ const PROJECTS = [
     title: "Canteen Management System",
     category: "Web",
     description: "MERN app to manage college canteen — attendance, payments, admin dashboard.",
-    longDescription: "Full Canteen Management System with student attendance, meal toggles, payment verification, and admin features. Built using React, Node, Express, and MongoDB.",
+    longDescription:
+      "Full Canteen Management System with student attendance, meal toggles, payment verification, and admin features. Built using React, Node, Express, and MongoDB.",
     img: "/images/project1.png",
     images: ["/images/project1.png", "/images/project1-1.png"],
     live: "#",
@@ -223,7 +195,6 @@ const PROJECTS = [
   },
 ];
 
-/* ---------- Main Component ---------- */
 export default function Project() {
   const [filter, setFilter] = useState("All");
   const [filtered, setFiltered] = useState(PROJECTS);
@@ -244,13 +215,20 @@ export default function Project() {
 
   const closeModal = useCallback(() => {
     setModalOpen(false);
-    // give modal time to close visually; then clear activeProject
     setTimeout(() => setActiveProject(null), 250);
   }, []);
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="projects" className="relative min-h-[85vh] text-slate-100 overflow-hidden">
+      {/* --- Shared non-hero background (same style used on Info) --- */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute -left-16 -top-16 w-96 h-96 rounded-full blur-[120px] bg-cyan-500/12 animate-pulse-slow" />
+        <div className="absolute right-8 bottom-10 w-80 h-80 rounded-full blur-[100px] bg-indigo-600/12 animate-pulse-slow" />
+        <div className="absolute inset-0 bg-[url('/textures/noise.svg')] opacity-6 mix-blend-soft-light" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
         <div className="flex items-center justify-between gap-4 mb-8">
           <h2 className="text-3xl md:text-4xl font-extrabold">Projects <span className="ml-2">🚀</span></h2>
 
@@ -268,29 +246,18 @@ export default function Project() {
           </div>
         </div>
 
-        {/* responsive grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.length === 0 && (
-            <div className="col-span-full text-center text-slate-400 py-12">
-              No projects match this filter yet.
-            </div>
-          )}
+          {filtered.length === 0 && <div className="col-span-full text-center text-slate-400 py-12">No projects match this filter yet.</div>}
 
           {filtered.map((p) => (
             <article key={p.id} className="group relative rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
-              {/* image */}
               <div className="relative">
                 <ImgWithFallback src={p.img} alt={`${p.title} screenshot`} className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105" />
-
-                {/* translucent glass overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* top-left tag */}
                 <div className="absolute top-3 left-3">
                   <span className="text-xs px-3 py-1 rounded-full bg-black/50 text-slate-100">{p.category}</span>
                 </div>
 
-                {/* bottom overlay actions */}
                 <div className="absolute left-0 right-0 bottom-3 px-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="flex gap-2">
                     <a href={p.live || "#"} target="_blank" rel="noreferrer" className="text-xs px-3 py-1 rounded bg-cyan-400 text-slate-900 font-semibold">Live</a>
@@ -301,8 +268,7 @@ export default function Project() {
                 </div>
               </div>
 
-              {/* card body */}
-              <div className="p-4 bg-gradient-to-b from-slate-900/60 to-slate-900">
+              <div className="p-4 bg-gradient-to-b from-slate-900/60 to-slate-900 glass-card">
                 <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-slate-300 mb-3">{p.description}</p>
 
@@ -316,13 +282,11 @@ export default function Project() {
           ))}
         </div>
 
-        {/* load more / footer CTA (optional) */}
         <div className="mt-8 text-center">
           <a href="#contact" className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 rounded-full text-slate-100 shadow">Want to see more? Let's talk</a>
         </div>
       </div>
 
-      {/* modal */}
       <ProjectModal open={modalOpen} project={activeProject} onClose={closeModal} />
     </section>
   );

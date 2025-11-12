@@ -19,9 +19,15 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100"
+      className="relative min-h-[80vh] py-20 overflow-hidden text-slate-100"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      {/* Background layers (site-wide non-hero style) */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute -left-24 -top-24 w-96 h-96 rounded-full blur-[120px] bg-blob-cyan opacity-50 animate-blob-slow -z-10" />
+      <div className="absolute right-8 bottom-8 w-80 h-80 rounded-full blur-[100px] bg-blob-indigo opacity-45 animate-blob-slow delay-2000 -z-10" />
+      <div className="absolute inset-0 -z-15 bg-[url('/textures/noise.svg')] opacity-4 mix-blend-overlay pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Title */}
         <h2
           className="text-3xl md:text-4xl font-extrabold text-center mb-12"
@@ -33,7 +39,7 @@ export default function Contact() {
         <div className="flex flex-col md:flex-row gap-8 md:items-stretch">
           {/* LEFT - CONTACT INFO */}
           <aside
-            className="flex-1 flex flex-col justify-between bg-slate-900/60 border border-slate-700 rounded-2xl p-6 shadow-lg"
+            className="flex-1 flex flex-col justify-between glass-card border border-slate-700/60 rounded-2xl p-6 shadow-lg"
             data-aos="fade-right"
           >
             <div>
@@ -45,45 +51,29 @@ export default function Contact() {
 
               <div className="space-y-4 text-slate-200">
                 <div className="flex items-center gap-3">
-                  <FaPhone className="text-xl text-purple-400" />
-                  <a
-                    href="tel:+916371535576"
-                    className="hover:text-white transition"
-                  >
+                  <FaPhone className="text-xl text-cyan-300" />
+                  <a href="tel:+916371535576" className="hover:text-white transition">
                     +91 6371535576
                   </a>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <FaEnvelope className="text-xl text-purple-400" />
-                  <a
-                    href="mailto:bibhuranjanmohanty97@gmail.com"
-                    className="hover:text-white transition"
-                  >
+                  <FaEnvelope className="text-xl text-cyan-300" />
+                  <a href="mailto:bibhuranjanmohanty97@gmail.com" className="hover:text-white transition">
                     bibhuranjanmohanty97@gmail.com
                   </a>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <FaGithub className="text-xl text-purple-400" />
-                  <a
-                    href="https://github.com/bibhu-git"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition"
-                  >
+                  <FaGithub className="text-xl text-cyan-300" />
+                  <a href="https://github.com/bibhu-git" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                     github.com/bibhu-git
                   </a>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <FaLinkedin className="text-xl text-purple-400" />
-                  <a
-                    href="https://www.linkedin.com/in/bibhu-ranjan-mohanty/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition"
-                  >
+                  <FaLinkedin className="text-xl text-cyan-300" />
+                  <a href="https://www.linkedin.com/in/bibhu-ranjan-mohanty/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                     linkedin.com/in/bibhu-ranjan-mohanty
                   </a>
                 </div>
@@ -93,22 +83,13 @@ export default function Contact() {
             {/* Social Icons + Resume */}
             <div className="mt-8">
               <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700 transition"
-                >
+                <a href="#" className="p-2 rounded-full bg-slate-800/30 hover:bg-slate-700 transition">
                   <FaInstagram />
                 </a>
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700 transition"
-                >
+                <a href="#" className="p-2 rounded-full bg-slate-800/30 hover:bg-slate-700 transition">
                   <FaTwitter />
                 </a>
-                <a
-                  href="#"
-                  className="p-2 rounded-full bg-slate-800/50 hover:bg-slate-700 transition"
-                >
+                <a href="#" className="p-2 rounded-full bg-slate-800/30 hover:bg-slate-700 transition">
                   <FaFacebook />
                 </a>
               </div>
@@ -118,7 +99,7 @@ export default function Contact() {
                   href="/resume_Bibhu.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-400 text-slate-900 rounded-full font-semibold shadow-sm hover:opacity-95"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-indigo-600 text-slate-900 rounded-full font-semibold shadow-sm hover:opacity-95"
                 >
                   Download Resume
                 </a>
@@ -128,7 +109,7 @@ export default function Contact() {
 
           {/* RIGHT - WORKING FORM */}
           <div
-            className="flex-1 flex flex-col justify-between bg-slate-900/50 border border-slate-700 rounded-2xl p-6 shadow-lg"
+            className="flex-1 flex flex-col justify-between glass-card border border-slate-700/60 rounded-2xl p-6 shadow-lg"
             data-aos="fade-left"
           >
             <h3 className="text-xl font-semibold mb-4">Send a message</h3>
@@ -138,60 +119,35 @@ export default function Contact() {
               help.
             </p>
 
-            {/* ✅ Simple HTML form (works perfectly with FormSubmit) */}
+            {/* Simple HTML form (works with FormSubmit) */}
             <form
               action="https://formsubmit.co/c24ff8e1c407698e36bc70fdb55d43d0"
               method="POST"
               className="flex flex-col gap-4"
             >
-              <input
-                type="hidden"
-                name="_subject"
-                value="New message from Portfolio Contact Form"
-              />
+              <input type="hidden" name="_subject" value="New message from Portfolio Contact Form" />
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
 
-              <label htmlFor="fullname" className="text-sm font-medium">
-                Full Name
-              </label>
-              <input
-                id="fullname"
-                name="Full Name"
-                type="text"
-                placeholder="Your full name"
+              <label htmlFor="fullname" className="text-sm font-medium">Full Name</label>
+              <input id="fullname" name="Full Name" type="text" placeholder="Your full name"
                 className="p-3 rounded-md bg-slate-800 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-400 outline-none"
                 required
               />
 
-              <label htmlFor="email" className="text-sm font-medium">
-                Email Address
-              </label>
-              <input
-                id="email"
-                name="Email"
-                type="email"
-                placeholder="you@company.com"
+              <label htmlFor="email" className="text-sm font-medium">Email Address</label>
+              <input id="email" name="Email" type="email" placeholder="you@company.com"
                 className="p-3 rounded-md bg-slate-800 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-400 outline-none"
                 required
               />
 
-              <label htmlFor="message" className="text-sm font-medium">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="Message"
-                rows="6"
-                placeholder="Tell me about your project..."
+              <label htmlFor="message" className="text-sm font-medium">Message</label>
+              <textarea id="message" name="Message" rows="6" placeholder="Tell me about your project..."
                 className="p-3 rounded-md bg-slate-800 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-400 outline-none"
                 required
               />
 
-              <button
-                type="submit"
-                className="mt-3 inline-flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:opacity-95 transition"
-              >
+              <button type="submit" className="mt-3 inline-flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:opacity-95 transition">
                 Send Message <FaEnvelope />
               </button>
             </form>
@@ -200,13 +156,9 @@ export default function Contact() {
               <strong>Note:</strong> This form sends an email via{" "}
               <span className="font-medium">formsubmit.co</span>. You can also
               reach me at{" "}
-              <a
-                href="mailto:bibhuranjanmohanty97@gmail.com"
-                className="underline text-cyan-400"
-              >
+              <a href="mailto:bibhuranjanmohanty97@gmail.com" className="underline text-cyan-400">
                 bibhuranjanmohanty97@gmail.com
-              </a>
-              .
+              </a>.
             </p>
           </div>
         </div>

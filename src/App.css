@@ -101,3 +101,345 @@ section + section {
 @media (prefers-reduced-motion: reduce) {
   .gradient-bar, .rounded-2xl, .group, .transition { transition: none !important; }
 }
+
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+
+/* ---------- Shared hero-like backgrounds & glass ---------- */
+
+/* animated radial gradient used in hero & SectionWrapper */
+.animate-gradient {
+  animation: heroGradient 18s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+@keyframes heroGradient {
+  0% { background-position: 0% 40%; }
+  50% { background-position: 100% 60%; }
+  100% { background-position: 0% 40%; }
+}
+
+/* slow pulse for blobs */
+.animate-pulse-slow {
+  animation: pulseSlow 8s ease-in-out infinite;
+}
+@keyframes pulseSlow {
+  0% { opacity: 0.12; transform: translateY(0) scale(1); }
+  50% { opacity: 0.16; transform: translateY(-8px) scale(1.02); }
+  100% { opacity: 0.12; transform: translateY(0) scale(1); }
+}
+
+/* glass-card (reusable) */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.55), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* subtle heading lift */
+h2, h3, h1 { text-shadow: 0 6px 18px rgba(2,6,23,0.35); }
+
+/* small responsive tweaks */
+@media (max-width: 900px) {
+  .blob-left, .blob-right { display: none; }
+  .glass-card { padding: 1rem; }
+}
+
+
+/* ---------- Animated radial background (dark, rich) ---------- */
+.bg-radial-animated {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(14,165,183,0.06) 0%, rgba(14,165,183,0.03) 6%),
+    radial-gradient(circle at 88% 88%, rgba(99,102,241,0.06) 0%, rgba(99,102,241,0.03) 8%),
+    radial-gradient(circle at 50% 30%, rgba(2,6,23,0.6) 0%, rgba(2,6,23,0.92) 70%),
+    linear-gradient(180deg,#071029 0%, #081022 30%, #0b1626 100%);
+  background-size: cover;
+  animation: subtleBackgroundShift 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes subtleBackgroundShift {
+  0% { transform: scale(1); filter: hue-rotate(0deg); }
+  50% { transform: scale(1.02); filter: hue-rotate(6deg); }
+  100% { transform: scale(1); filter: hue-rotate(0deg); }
+}
+
+/* Blob colors */
+.bg-blob-cyan {
+  background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(34,211,238,0.06));
+}
+.bg-blob-indigo {
+  background: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(139,92,246,0.04));
+}
+
+/* slow blob pulse */
+@keyframes blobFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0.55; }
+  50% { transform: translateY(-10px) scale(1.03); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1); opacity: 0.55; }
+}
+.animate-blob-slow {
+  animation: blobFloat 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* glass-card (refined) */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* subtle grid / noise overlay for texture */
+.bg-grid-mask {
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.01), transparent 10%);
+  background-size: 120px 120px, 120px 120px, 800px 800px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* small responsive tuning */
+@media (max-width: 900px) {
+  .bg-radial-animated { background-position: center; }
+  .animate-blob-slow { display: none; }
+  .glass-card { padding: 1rem; }
+}
+
+
+/* ---------- Shared Hero-like Background & Glass Theme ---------- */
+
+/* animated radial gradient used everywhere */
+.bg-radial-animated {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(14,165,183,0.06) 0%, rgba(14,165,183,0.03) 6%),
+    radial-gradient(circle at 88% 88%, rgba(99,102,241,0.06) 0%, rgba(99,102,241,0.03) 8%),
+    radial-gradient(circle at 50% 30%, rgba(2,6,23,0.6) 0%, rgba(2,6,23,0.92) 70%),
+    linear-gradient(180deg,#071029 0%, #081022 30%, #0b1626 100%);
+  background-size: cover;
+  animation: subtleBackgroundShift 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes subtleBackgroundShift {
+  0% { transform: scale(1); filter: hue-rotate(0deg); }
+  50% { transform: scale(1.02); filter: hue-rotate(6deg); }
+  100% { transform: scale(1); filter: hue-rotate(0deg); }
+}
+
+/* blob accent styles */
+.bg-blob-cyan {
+  background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(34,211,238,0.06));
+}
+.bg-blob-indigo {
+  background: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(139,92,246,0.04));
+}
+
+/* slow blob floating animation */
+@keyframes blobFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0.55; }
+  50% { transform: translateY(-10px) scale(1.03); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1); opacity: 0.55; }
+}
+.animate-blob-slow {
+  animation: blobFloat 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* glass-card base */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* subtle texture overlay / grid to add depth */
+.bg-grid-mask {
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.01) 1px, transparent 1px),
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.01), transparent 10%);
+  background-size: 120px 120px, 120px 120px, 800px 800px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* small heading shadow for contrast */
+h1,h2,h3 { text-shadow: 0 6px 18px rgba(2,6,23,0.35); }
+
+/* responsiveness & reduced-motion */
+@media (max-width: 900px) {
+  .animate-blob-slow { display: none; }
+  .glass-card { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob-slow, .bg-radial-animated { animation: none !important; transition: none !important; }
+}
+
+
+/* subtle pulse for glow blobs */
+@keyframes pulse-slow {
+  0%,100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.03); opacity: 0.72; }
+}
+.animate-pulse-slow { animation: pulse-slow 10s ease-in-out infinite; }
+
+/* glass card utility used above */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* fallback noise if you don't have textures/noise.svg */
+.bg-noise-fallback {
+  background-image: radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.02;
+}
+
+/* accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow { animation: none !important; }
+}
+
+
+/* subtle pulse for glow blobs */
+@keyframes pulse-slow {
+  0%,100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.03); opacity: 0.72; }
+}
+.animate-pulse-slow { animation: pulse-slow 10s ease-in-out infinite; }
+
+/* glass card utility used above */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* gentle noise overlay fallback */
+.bg-noise-fallback {
+  background-image: radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.02;
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow { animation: none !important; }
+}
+
+
+/* background blobs */
+.bg-blob-cyan { background: linear-gradient(135deg, rgba(56,189,248,0.14), rgba(59,130,246,0.08)); }
+.bg-blob-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.06)); }
+
+/* gentle pulse for glow blobs */
+@keyframes pulse-slow {
+  0%,100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.03); opacity: 0.72; }
+}
+.animate-blob-slow { animation: pulse-slow 10s ease-in-out infinite; }
+
+/* glass-card for panels */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* gradient bar for proficiency */
+.gradient-bar {
+  background: linear-gradient(90deg, #06b6d4, #3b82f6, #7c3aed);
+  box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+  transition: width 900ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* noise overlay (optional) - fallback if you don't have texture file */
+.bg-noise-fallback {
+  background-image: radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.02;
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob-slow, .gradient-bar, *[class*="animate-"] { animation: none !important; transition: none !important; }
+}
+
+
+/* blobs + subtle pulse */
+.bg-blob-cyan { background: linear-gradient(135deg, rgba(56,189,248,0.14), rgba(59,130,246,0.08)); }
+.bg-blob-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.06)); }
+
+@keyframes pulse-slow {
+  0%,100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.03); opacity: 0.72; }
+}
+.animate-blob-slow { animation: pulse-slow 10s ease-in-out infinite; }
+
+/* glass-card panel used site-wide */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px) saturate(1.05);
+  color: #e6eef8;
+}
+
+/* optional noise texture fallback */
+.bg-noise-fallback {
+  background-image: radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.02;
+}
+
+/* prefers-reduced-motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob-slow, *[class*="animate-"] { animation: none !important; transition: none !important; }
+}

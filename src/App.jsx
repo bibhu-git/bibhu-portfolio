@@ -12,16 +12,15 @@ import Footer from "./Components/Footer";
 import "./App.css";
 import Loader from "./Components/Loader";
 
+
 export default function MiladiCodePortfolio() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({ once: true, duration: 900 });
-    // If page already loaded, hide loader, otherwise wait for load event
-    const handlePageLoad = () => setLoading(false);
 
+    const handlePageLoad = () => setLoading(false);
     if (document.readyState === "complete") {
-      // small delay so loader feels intentional
       setTimeout(() => setLoading(false), 450);
     } else {
       window.addEventListener("load", handlePageLoad);
@@ -32,19 +31,24 @@ export default function MiladiCodePortfolio() {
 
   return (
     <>
-      {/* Loader overlay — kept visible until loading state flips */}
+      {/* Loader overlay */}
       <div
         aria-hidden={loading ? "false" : "true"}
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 backdrop-blur-sm transition-opacity duration-700 ${loading ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 backdrop-blur-sm transition-opacity duration-700 ${loading
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
       >
         <Loader />
       </div>
 
+      {/* 3D Background (Always visible behind everything) */}
+      {/* <Background3D /> */}
+
       {/* Main content */}
       <main
-        className={`min-h-screen transition-opacity duration-700 ${loading ? "opacity-0 pointer-events-none" : "opacity-100"
-          } bg-slate-900`}
+        className={`relative min-h-screen transition-opacity duration-700 ${loading ? "opacity-0 pointer-events-none" : "opacity-100"
+          } bg-slate-900/60 backdrop-blur-[2px]`}
       >
         <Navbar />
         <Hero />

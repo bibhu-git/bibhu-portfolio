@@ -1,16 +1,5 @@
 import React from "react";
 
-/**
- * Skill.jsx — polished UI:
- * - left: short intro + counts
- * - center: icon grid (clickable visual tiles)
- * - right: animated proficiency bars
- *
- * Notes:
- * - If you prefer local icons, replace icon URLs in SKILLS array.
- * - Keep a small fallback image at /public/images/placeholder.png for safety.
- */
-
 const FALLBACK = "/images/placeholder.png";
 
 const SKILLS = [
@@ -19,9 +8,7 @@ const SKILLS = [
   { id: "node", name: "Node.js", pct: 85, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" },
   { id: "express", name: "Express", pct: 82, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" },
   { id: "mongo", name: "MongoDB", pct: 80, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" },
-  {
-    id: "tailwind", name: "Tailwind", pct: 88, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg"
-  },
+  { id: "tailwind", name: "Tailwind", pct: 88, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" },
   { id: "redux", name: "Redux", pct: 76, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" },
   { id: "git", name: "Git", pct: 82, icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" },
 ];
@@ -35,9 +22,15 @@ function ImgFallback({ src, alt, className = "" }) {
 
 export default function Skill() {
   return (
-    <section id="skills" className="min-h-[75vh] py-16 md:py-20 bg-slate-900 text-slate-100">
-      <div className="max-w-7xl mx-auto px-6">
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+    <section id="skills" className="relative min-h-[80vh] py-16 md:py-24 overflow-hidden text-slate-100">
+      {/* Background layers (same non-hero style) */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute -left-20 -top-20 w-96 h-96 rounded-full blur-[120px] bg-blob-cyan opacity-50 animate-blob-slow -z-10" />
+      <div className="absolute right-8 bottom-10 w-80 h-80 rounded-full blur-[100px] bg-blob-indigo opacity-45 animate-blob-slow delay-2000 -z-10" />
+      <div className="absolute inset-0 -z-15 bg-[url('/textures/noise.svg')] opacity-4 mix-blend-overlay pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
           <h2 className="text-3xl md:text-4xl font-extrabold">Technical Expertise ⚙️</h2>
           <p className="text-sm md:text-base text-slate-400 max-w-2xl">
             I build frontend-first interfaces and reliable backends. Below are the tools I use most often along with my proficiency levels.
@@ -45,8 +38,8 @@ export default function Skill() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* LEFT: summary + quick stats */}
-          <div className="rounded-2xl bg-gradient-to-b from-slate-800/60 to-slate-900/40 border border-slate-700 p-6 shadow-lg flex flex-col justify-between">
+          {/* LEFT */}
+          <div className="rounded-2xl glass-card p-6 shadow-lg flex flex-col justify-between">
             <div>
               <h3 className="text-lg font-semibold text-cyan-400 mb-2">What I focus on</h3>
               <p className="text-sm text-slate-300 mb-4">
@@ -54,19 +47,19 @@ export default function Skill() {
               </p>
 
               <div className="grid grid-cols-2 gap-4 mt-4">
-                <div className="bg-slate-800/40 p-3 rounded-lg text-center">
+                <div className="bg-slate-800/30 p-3 rounded-lg text-center">
                   <div className="text-2xl font-bold text-slate-100">12+</div>
                   <div className="text-xs text-slate-400">Projects</div>
                 </div>
-                <div className="bg-slate-800/40 p-3 rounded-lg text-center">
+                <div className="bg-slate-800/30 p-3 rounded-lg text-center">
                   <div className="text-2xl font-bold text-slate-100">2 yrs</div>
                   <div className="text-xs text-slate-400">Experience</div>
                 </div>
-                <div className="bg-slate-800/40 p-3 rounded-lg text-center">
+                <div className="bg-slate-800/30 p-3 rounded-lg text-center">
                   <div className="text-2xl font-bold text-slate-100">50+</div>
                   <div className="text-xs text-slate-400">Git PRs</div>
                 </div>
-                <div className="bg-slate-800/40 p-3 rounded-lg text-center">
+                <div className="bg-slate-800/30 p-3 rounded-lg text-center">
                   <div className="text-2xl font-bold text-slate-100">MERN</div>
                   <div className="text-xs text-slate-400">Primary Stack</div>
                 </div>
@@ -80,8 +73,8 @@ export default function Skill() {
             </div>
           </div>
 
-          {/* CENTER: icon grid */}
-          <div className="rounded-2xl bg-gradient-to-b from-slate-800/60 to-slate-900/40 border border-slate-700 p-6 shadow-lg">
+          {/* CENTER */}
+          <div className="rounded-2xl glass-card p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-cyan-400 mb-4">Toolbox</h3>
             <p className="text-sm text-slate-300 mb-4">Primary libraries, frameworks and tools I use day-to-day.</p>
 
@@ -102,12 +95,12 @@ export default function Skill() {
             </div>
 
             <div className="mt-6 text-xs text-slate-400">
-              Also familiar with: Git, Docker basics, REST APIs, Redux/Zustand, Stripe.
+              Also familiar with: Git, Docker, REST APIs, Redux/Zustand, Stripe.
             </div>
           </div>
 
-          {/* RIGHT: proficiency bars */}
-          <div className="rounded-2xl bg-gradient-to-b from-slate-800/60 to-slate-900/40 border border-slate-700 p-6 shadow-lg">
+          {/* RIGHT */}
+          <div className="rounded-2xl glass-card p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-cyan-400 mb-4">Proficiency</h3>
             <div className="space-y-4">
               {SKILLS.map((s) => (
@@ -131,13 +124,12 @@ export default function Skill() {
             </div>
 
             <div className="mt-6 text-sm text-slate-400">
-              My proficiency numbers are approximate — I focus on building production-ready features and learning quickly.
+              Proficiency numbers are approximate — I focus on shipping features and continuous learning.
             </div>
           </div>
         </div>
 
-        {/* Workflow footer */}
-        <div className="mt-12 rounded-2xl p-6 bg-slate-800/40 border border-slate-700 shadow-inner flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-12 rounded-2xl p-6 bg-slate-800/30 border border-slate-700 shadow-inner flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <div className="text-sm text-slate-300 font-semibold">How I work</div>
             <div className="text-xs text-slate-400">Plan → Implement → Review → Deploy → Iterate</div>
