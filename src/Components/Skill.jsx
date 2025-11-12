@@ -52,8 +52,8 @@ export default function Skill() {
                   <div className="text-xs text-slate-400">Projects</div>
                 </div>
                 <div className="bg-slate-800/30 p-3 rounded-lg text-center">
-                  <div className="text-2xl font-bold text-slate-100">2 yrs</div>
-                  <div className="text-xs text-slate-400">Experience</div>
+                  <div className="text-2xl font-bold text-slate-100">Fresher</div>
+                  <div className="text-xs text-slate-400">Open to learning & internships</div>
                 </div>
                 <div className="bg-slate-800/30 p-3 rounded-lg text-center">
                   <div className="text-2xl font-bold text-slate-100">50+</div>
